@@ -7,15 +7,15 @@ from builder.base_builder import BaseBuilder
 """
 
 
-class SpiderBuilder(BaseBuilder):
+class SpiderSettingBuilder(BaseBuilder):
     def __init__(self):
         super().__init__()
         self.param = None
         self.proxy = None
         self.header = None
-        self.actor_proxy = ActorProxyClient(SpiderBuilder.__name__)
+        self.actor_proxy = ActorProxyClient(SpiderSettingBuilder.__name__)
 
-    # 查询页面
+    # 根据配置查询页面
     async def get_search(self, param):
         self.param = param
         self.header = {

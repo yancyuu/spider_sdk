@@ -1,13 +1,9 @@
 from dapr.actor import ActorInterface, actormethod
 
 
-class SpiderActorInterface(ActorInterface):
-    @actormethod(name="listSpider")
+class SpiderSettingActorInterface(ActorInterface):
+    @actormethod(name="listParseSettings")
     async def list_spider(self) -> object:
-        ...
-
-    @actormethod(name="generateSpider")
-    async def generate_spider(self, data: dict) -> object:
         ...
 
     @actormethod(name="generateParseSettings")
