@@ -16,7 +16,7 @@ class SpiderSettingBuilder(BaseBuilder):
         self.actor_proxy = ActorProxyClient(SpiderSettingBuilder.__name__)
 
     # 根据配置查询页面
-    async def get_search(self, param):
+    async def make_get_request_by_setting(self, param):
         self.param = param
         self.header = {
             "content-type": "text/html; charset=utf-8"

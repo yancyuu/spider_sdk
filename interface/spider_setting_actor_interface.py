@@ -2,15 +2,15 @@ from dapr.actor import ActorInterface, actormethod
 
 
 class SpiderSettingActorInterface(ActorInterface):
-    @actormethod(name="listParseSettings")
-    async def list_spider(self) -> object:
-        ...
-
-    @actormethod(name="generateParseSettings")
+    @actormethod(name="GenerateParseSettings")
     async def generate_parse_settings(self, data: dict) -> object:
         ...
 
-    @actormethod(name="startCrawling")
+    @actormethod(name="DeleteParseSettings")
+    async def delete_parse_settings(self, data: dict) -> object:
+        ...
+
+    @actormethod(name="StartCrawling")
     async def start_crawling(self) -> object:
         ...
 
