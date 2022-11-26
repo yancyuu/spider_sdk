@@ -1,7 +1,7 @@
-from client.actor_proxy_client import ActorProxyClient
+from spider_sdk.client.actor_proxy_client import ActorProxyClient
 from common_sdk.system.sys_env import get_env
 from faker import Faker
-from builder.base_builder import BaseBuilder
+from spider_sdk.builder.base_builder import BaseBuilder
 """
     用于处理请求时的内容封装(根据配置和特殊页面封装)
 """

@@ -1,10 +1,10 @@
 import os
 
 from dapr.actor import ActorProxy, ActorId
-from interface.cookie_actor_interface import CookieActorInterface
-from interface.proxy_actor_interface import ProxyActorInterface
-from interface.spider_setting_actor_interface import SpiderSettingActorInterface
-from interface.fixed_rules_spider_actor_interface import FixedRulesSpiderActorInterface
+from spider_sdk.interface.cookie_actor_interface import CookieActorInterface
+from spider_sdk.interface.proxy_actor_interface import ProxyActorInterface
+from spider_sdk.interface.spider_setting_actor_interface import SpiderSettingActorInterface
+from spider_sdk.interface.fixed_rules_spider_actor_interface import FixedRulesSpiderActorInterface
 
 """
     通用的边车服务代理类

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from client.actor_proxy_client import ActorProxyClient
-from client.http_client import HttpClient
+from spider_sdk.client.actor_proxy_client import ActorProxyClient
+from spider_sdk.client.http_client import HttpClient
 
 '''
 供前台服务调用的通用方法
