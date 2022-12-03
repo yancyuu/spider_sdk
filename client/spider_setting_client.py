@@ -15,5 +15,5 @@ class SpiderSettingClient(HttpClient):
         self.spider_setting = self.actor_proxy.create_spider_setting_actor_proxy()
 
     def get_search(self):
-        return self.make_get_request_by_setting()
+        return self.make_get_request()
 
