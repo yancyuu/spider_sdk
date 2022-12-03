@@ -6,6 +6,10 @@ class SpiderSettingActorInterface(ActorInterface):
     async def generate_parse_settings(self, data: dict) -> object:
         ...
 
+    @actormethod(name="UpdateParseSetting")
+    async def update_parse_setting(self, data: dict) -> object:
+        ...
+
     @actormethod(name="DeleteParseSettings")
     async def delete_parse_settings(self, data: dict) -> object:
         ...
