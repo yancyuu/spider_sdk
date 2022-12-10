@@ -2,7 +2,7 @@
 from common_sdk.logging.logger import logger
 from urllib.parse import urlencode
 
-import requests
+import httpx
 
 """
     通用的http处理类
@@ -10,47 +10,54 @@ import requests
 
 
 class HttpClient(object):
+    def __init__(self):
+        self.client = httpx.AsyncClient()
 
-    def __init__(self, builder):
-        self._builder = builder.url
-
-    '''
+    """
         post请求关注返回值
-    '''
+    """
 
-    def make_post_request(self):
-        url = 'http://{}/'.format(self._builder.url)
+    async def make_post_request(self, url, proxy=None, param=None, headers=None):
+        url = 'http://{}/'.format(url)
         try:
-            if self._builder.proxy:
-                logger.info("发送POST请求---->url{}   proxy---->{}".format(url, self._builder.proxy))
-                res_json = requests.post(url, json=self._builder.param, headers=self._builder.headers, proxies=self._builder.proxy)
+            if proxy:
+                logger.info("发送POST请求---->url{}   proxy---->{}".format(url, proxy))
+                # todo: 代理
+                self.client.proxies = httpx.Proxy(
+                    url=proxy,
+                )
+                res = await self.client.post(url, json=param, headers=headers)
             else:
                 logger.info("发送POST请求---->url{}".format(url))
-                res_json = requests.post(url, json=self._builder.param, headers=self._builder.headers)
-            if res_json:
-                return res_json
+                res = await self.client.post(url, json=param, headers=headers)
+            if res:
+                return res
             else:
                 return {}
         except Exception as e:
             logger.info("请求失败{}".format(e))
             return False
+
     '''
         get请求关注返回的content（做解析）
     '''
 
-    def make_get_request(self):
-        url = 'http://{}'.format(self._builder.url)
-        if self._builder.param:
-            url += "?" + urlencode(self._builder.param())
+    async def make_get_request(self, url, proxy=None, param=None, headers=None):
+        url = 'http://{}'.format(url)
+        if param:
+            url += "?" + urlencode(param)
         try:
-            if self._builder.proxy:
-                logger.info("发送GET请求---->url{}   proxy---->{}".format(url, self._builder.proxy))
-                res = requests.get(url, headers=self._builder.headers, proxies=self._builder.proxy)
+            if proxy:
+                self.client.proxies = httpx.Proxy(
+                    url=proxy,
+                )
+                logger.info("发送GET请求---->url{}   proxy---->{}".format(url, proxy))
+                res = await self.client.get(url, headers=headers)
             else:
                 logger.info("发送GET请求---->url{}".format(url))
-                res = requests.get(url, headers=self._builder.headers)
+                res = await self.client.get(url, headers=headers)
             if res:
-                return res.content
+                return res
             else:
                 return ""
         except Exception as e:
