@@ -20,7 +20,7 @@ class BreederBuilder(BaseBuilder):
     # 根据配置查询页面
     async def make_get_request_by_setting(self):
         if get_env("USE_COOKIE_POOL"):
-            actor_proxy = self.actor_proxy.create_cookie_actor_proxy()
+            actor_proxy = self.actor_proxy.cookie_actor_proxy()
             cookie = await actor_proxy.getCookie()
             # 在builder中增加cookie
             if cookie:

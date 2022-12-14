@@ -10,5 +10,5 @@ from spider_sdk.client.http_client import HttpClient
 class BreederClient(HttpClient):
 
     async def get(self, builder):
-        builder.make_get_request_by_setting()
+        await builder.make_get_request_by_setting()
         return await self.make_get_request(url=builder.url, headers=builder.header, proxy=builder.proxy, param=builder.param)
